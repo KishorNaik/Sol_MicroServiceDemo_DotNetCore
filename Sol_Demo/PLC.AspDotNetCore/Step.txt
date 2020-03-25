@@ -1,0 +1,15 @@
+﻿Step 1:
+	Create Class Library (.Net Core)
+
+Step 2:
+	Select a project and right click on edit .csproject file
+
+Step 3:
+	Replace following code
+		<Project Sdk="Microsoft.NET.Sdk"> 
+	Into this
+		<Project Sdk="Microsoft.NET.Sdk.Web">
+
+Step 4:
+	Change output type from Console to Class Library
+	Select Project and right click on Property, in Application Tab, Select Output Type

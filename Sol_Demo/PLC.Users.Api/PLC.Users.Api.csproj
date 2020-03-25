@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="HashPassword" Version="1.0.0" />
+    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PLC.AspDotNetCore\PLC.AspDotNetCore.csproj" />
+    <ProjectReference Include="..\PLC.Models\PLC.Models.csproj" />
+    <ProjectReference Include="..\PLC.Users.Service\PLC.Users.Service.csproj" />
+  </ItemGroup>
+
+
+</Project>
