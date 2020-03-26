@@ -1,4 +1,4 @@
-﻿CREATE VIEW [Users].[udvUserCommunication]
+﻿CREATE VIEW [Users].[udvUserLogin]
 WITH SCHEMABINDING
 	AS 
 		SELECT 
@@ -6,12 +6,13 @@ WITH SCHEMABINDING
 			U.UserIdentity,
 			U.FirstName,
 			U.LastName,
-			UC.EmailId,
-			UC.MobileNo
+			UL.UserName,
+			UL.Salt,
+			UL.Hash
 		FROM 
 			Users.tblUsers AS U WITH(NOLOCK)
 		INNER JOIN
-			Users.tblUserCommunication AS UC WITH(NOLOCK) 
+			Users.tblUsersLogin AS UL WITH(NOLOCK) 
 		ON 
-			U.UserId=UC.UserId
+			U.UserId=UL.UserId
 			

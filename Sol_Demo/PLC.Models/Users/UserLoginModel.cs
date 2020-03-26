@@ -19,5 +19,8 @@ namespace PLC.Models.Users
 
         [DataMember(EmitDefaultValue = false)]
         public String Hash { get; set; }
+
+        [DataMember(EmitDefaultValue = false)]
+        public String Token { get; set; }
     }
 }

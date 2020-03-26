@@ -22,7 +22,7 @@ namespace PLC.Users.Api
             services.AddTransient<IAddUserContext, AddUsersContext>();
             services.AddTransient<IAddUsersRepository, AddUsersRepository>();
 
-            
+            services.AddTransient<ILoginCredentailsValidateRepository, LoginCredentailsValidateRepository>();
         }
     }
 }

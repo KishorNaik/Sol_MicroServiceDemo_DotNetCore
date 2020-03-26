@@ -74,5 +74,8 @@
     <Build Include="Source\Functions\udfIsEmailIdOrMobileExists.sql" />
     <Build Include="Source\Indexs\IX_TblUserCommunication_EmailD_MobileNo.sql" />
     <Build Include="Source\Views\udfUserCommunication.sql" />
+    <Build Include="Source\StoredProcedures\uspGetUsers.sql" />
+    <Build Include="Source\Indexs\IX_TblLogin_UserName.sql" />
+    <Build Include="Source\Views\udfUserLogin.sql" />
   </ItemGroup>
 </Project>

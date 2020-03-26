@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AuthJwt.Services;
+using JwtAuth.Middlewares;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -35,6 +37,9 @@ namespace PLC.Users.Api
             // Add Db Providers
             services.AddSqlClientDbProvider(DatabaseResource.PLC_Users_Uat, DatabaseResource.PLC_Users_Production);
 
+            // Add Api Delegate Handler
+            services.AddApiDelegateHandler();
+
             // Add Crypto Service
             services.AddCrypto();
 
@@ -43,6 +48,9 @@ namespace PLC.Users.Api
 
             // Add GZip Response Compression
             services.AddGzipResponseCompression();
+
+            // Add Jwt Token Service
+            services.AddJwtToken(AppResource.JwtSecretKey); 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -55,6 +63,8 @@ namespace PLC.Users.Api
 
 
             app.UseRouting();
+
+            app.UseJwtToken(); // Use Jwt Token Middleware
 
             app.UseAuthorization();
 

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using PLC.AspDotNetCore.ApiHandler;
 using PLC.AspDotNetCore.Filters;
 using PLC.Models.Cores;
 using PLC.Models.Users;
@@ -18,6 +19,17 @@ namespace PLC.Users.Api.Controllers
     [InternalApiKeyValidateFilter]
     public class UsersCryptoController : ControllerBase
     {
+        #region Declaration
+        private readonly ApiDelegateHandler apiDelegateHandler = null;
+        #endregion
+
+        #region Constructor
+        public UsersCryptoController(ApiDelegateHandler apiDelegateHandler)
+        {
+            this.apiDelegateHandler = apiDelegateHandler;
+        }
+        #endregion 
+
         #region Public EndPint
 
         [HttpPost("userencrypte")]
@@ -29,16 +41,15 @@ namespace PLC.Users.Api.Controllers
         {
             try
             {
-                if (userModel == null) return base.BadRequest(new MessageModel() { Message = "User Model Should not be empty" });
-                else
-                {
-                    var response =
-                            await
-                               usersEncryptionContext
-                               ?.UsersEncryptAsync(userModel);
-
-                    return base.Ok((Object)response);
-                }
+                return
+                    await
+                        apiDelegateHandler
+                        .HandlerAsync<UserModel>(
+                            userModel,
+                            async ()=> await usersEncryptionContext.UsersEncryptAsync(userModel),
+                            "User Model should not be empty"
+                            
+                            );
             }
             catch
             {
@@ -56,16 +67,15 @@ namespace PLC.Users.Api.Controllers
         {
             try
             {
-                if (userModel == null) return base.BadRequest(new MessageModel() { Message = "User Model Should not be empty" });
-                else
-                {
-                    var response =
-                            await
-                               usersDecryptionContext
-                               ?.UserDecryptAsync(userModel);
+                return
+                     await
+                        apiDelegateHandler
+                        .HandlerAsync<UserModel>(
+                            userModel,
+                            async () => await usersDecryptionContext.UserDecryptAsync(userModel),
+                            "User Model should not be empty"
 
-                    return base.Ok((Object)response);
-                }
+                            );
             }
             catch
             {

@@ -17,7 +17,7 @@ BEGIN
 					SELECT 
 						1
 					FROM 
-						Users.udfUserCommunication AS UC WITH(NOLOCK)
+						Users.udvUserCommunication AS UC WITH(NOLOCK)
 					WHERE
 							(
 									UC.MobileNo=@MobileNo

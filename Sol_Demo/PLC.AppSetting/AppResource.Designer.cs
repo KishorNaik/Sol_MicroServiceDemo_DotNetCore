@@ -86,5 +86,14 @@ namespace PLC.AppSetting {
                 return ResourceManager.GetString("IsProduction", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ju5VAN40SrteigiregslWvgbgkszidVUqyHCe8J0HvGOzA6TOaeyFI2drYEzVXDJgMIwcOPw9gtTA6zCR8lVmc5MNiA5zkGbD2giJgoaTgFds3Nxtx6Pr204kTVUul55FDK2ObxtJCJPG6jPO9fgvMxszVAaXWIJj6Fq2gZNauAfZT3rw5TkDChxsRraP83JmlfGLEzJ.
+        /// </summary>
+        public static string JwtSecretKey {
+            get {
+                return ResourceManager.GetString("JwtSecretKey", resourceCulture);
+            }
+        }
     }
 }

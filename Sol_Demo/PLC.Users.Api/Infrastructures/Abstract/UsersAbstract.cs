@@ -38,6 +38,32 @@ namespace PLC.Users.Api.Infrastructures.Abstract
                 throw;
             }
         }
+
+        protected async override Task<DynamicParameters> GetParameterAsync(string command, UserModel model = null)
+        {
+            try
+            {
+                var dynamicParameterObj=await  base.GetParameterAsync(command, model);
+
+                dynamicParameterObj.Add("@UserIdentity", model?.UserIdentity, DbType.String);
+                dynamicParameterObj.Add("@FirstName", model?.FirstName, DbType.String);
+                dynamicParameterObj.Add("@LastName", model?.LastName, DbType.String);
+
+                dynamicParameterObj.Add("@MobileNo", model?.UserCommunication?.MobileNo, DbType.String);
+                dynamicParameterObj.Add("@EmailId", model?.UserCommunication?.EmailId, DbType.String);
+
+                dynamicParameterObj.Add("@UserName", model?.UserLogin?.UserName, DbType.String);
+                dynamicParameterObj.Add("@Password", model?.UserLogin?.Password, DbType.String);
+
+                return dynamicParameterObj;
+            }
+            catch
+            {
+                throw;
+            }
+            
+        }
+
         #endregion 
     }
 }
