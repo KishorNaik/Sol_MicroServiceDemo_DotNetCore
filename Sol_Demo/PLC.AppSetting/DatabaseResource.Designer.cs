@@ -61,6 +61,24 @@ namespace PLC.AppSetting {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Data Source=DESKTOP-MOL1H66\IDEATORS;Initial Catalog=PLC.Course;Integrated Security=True;Connect Timeout=60;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False.
+        /// </summary>
+        public static string PLC_Course_Production {
+            get {
+                return ResourceManager.GetString("PLC.Course.Production", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Data Source=DESKTOP-MOL1H66\IDEATORS;Initial Catalog=PLC.Course;Integrated Security=True;Connect Timeout=60;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False.
+        /// </summary>
+        public static string PLC_Course_Uat {
+            get {
+                return ResourceManager.GetString("PLC.Course.Uat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Data Source=DESKTOP-MOL1H66\IDEATORS;Initial Catalog=PLC.Users;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False.
         /// </summary>
         public static string PLC_Users_Production {

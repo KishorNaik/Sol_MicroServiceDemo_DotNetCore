@@ -46,6 +46,7 @@ namespace PLC.Users.Api.Controllers
                         .HandlerAsync<UserModel>(
                             userModel,
                             async ()=> await addUserContext?.AddUserAsync(userModel),
+                            (leResponse)=> base.Ok((Object)leResponse),
                             "User Model Should not be empty"
                             );
             }
@@ -71,6 +72,7 @@ namespace PLC.Users.Api.Controllers
                         .HandlerAsync<UserModel>(
                             userModel,
                             async () => await loginCredentailsValidateContext?.LoginValidateAsync(userModel),
+                            (leResponse) => base.Ok((Object)leResponse),
                             "User Model Should not be empty"
                             );
             }

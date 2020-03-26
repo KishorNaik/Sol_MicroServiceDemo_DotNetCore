@@ -47,6 +47,7 @@ namespace PLC.Users.Api.Controllers
                         .HandlerAsync<UserModel>(
                             userModel,
                             async ()=> await usersEncryptionContext.UsersEncryptAsync(userModel),
+                            (leResponse) => base.Ok((Object)leResponse),
                             "User Model should not be empty"
                             
                             );
@@ -73,8 +74,8 @@ namespace PLC.Users.Api.Controllers
                         .HandlerAsync<UserModel>(
                             userModel,
                             async () => await usersDecryptionContext.UserDecryptAsync(userModel),
+                            (leResponse) => base.Ok((Object)leResponse),
                             "User Model should not be empty"
-
                             );
             }
             catch

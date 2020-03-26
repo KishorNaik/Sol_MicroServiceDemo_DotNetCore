@@ -2,8 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using AuthJwt.Services;
-using JwtAuth.Middlewares;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -15,7 +13,7 @@ using PLC.AppSetting;
 using PLC.AspDotNetCore.Middlewares;
 using PLC.AspDotNetCore.Services;
 
-namespace PLC.Users.Api
+namespace PLC.Course.Api
 {
     public class Startup
     {
@@ -35,7 +33,7 @@ namespace PLC.Users.Api
             services.AddJson(true);
 
             // Add Db Providers
-            services.AddSqlClientDbProvider(DatabaseResource.PLC_Users_Uat, DatabaseResource.PLC_Users_Production);
+            services.AddSqlClientDbProvider(DatabaseResource.PLC_Course_Uat, DatabaseResource.PLC_Course_Production);
 
             // Add Api Delegate Handler
             services.AddApiDelegateHandler();
@@ -43,14 +41,11 @@ namespace PLC.Users.Api
             // Add Crypto Service
             services.AddCrypto();
 
-            // Add User Di Service
-            services.AddUsersDi();
-
             // Add GZip Response Compression
             services.AddGzipResponseCompression();
 
-            // Add Jwt Token Service
-            services.AddJwtToken(AppResource.JwtSecretKey); 
+            // Add Course Di Service
+            services.AddCourseDiService();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -61,11 +56,7 @@ namespace PLC.Users.Api
                 app.UseDeveloperExceptionPage();
             }
 
-
             app.UseRouting();
-
-            // Use Jwt Token Middleware
-            app.UseJwtToken(); 
 
             app.UseAuthorization();
 

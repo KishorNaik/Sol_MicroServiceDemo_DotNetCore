@@ -39,8 +39,7 @@ namespace PLC.Users.Api.Infrastructures.Repository
                             ?.SqlParameterAsync(async () => await base.SetParameterAsync("Add-Users", userModel))
                             ?.SqlCommandAsync(async (leDbConnection, leDynamicParameter) =>
                             {
-                                try
-                                {
+                                
                                     var data =
                                         (await
                                         leDbConnection
@@ -58,14 +57,6 @@ namespace PLC.Users.Api.Infrastructures.Repository
                                       };
 
                                     return response;
-                                }
-                                catch(Exception ex)
-                                {
-
-                                }
-
-                                return null;
-
                             })
                             ?.ResultAsync<dynamic>();
 

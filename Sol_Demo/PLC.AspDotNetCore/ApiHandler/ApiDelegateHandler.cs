@@ -10,7 +10,9 @@ namespace PLC.AspDotNetCore.ApiHandler
 
     public sealed class ApiDelegateHandler : ControllerBase
     {
-        public async Task<IActionResult> HandlerAsync<TModel>(TModel model,Func<Task<dynamic>> funcResponse,string badRequestMessage=null)
+
+        #region Public Method
+        public async Task<IActionResult> HandlerAsync<TModel>(TModel model,Func<Task<dynamic>> funcResponse,Func<dynamic,IActionResult> funcResult, string badRequestMessage=null)
             where TModel : class
         {
             try
@@ -22,7 +24,7 @@ namespace PLC.AspDotNetCore.ApiHandler
                            await
                                 funcResponse();
 
-                    return base.Ok((Object)response);
+                    return funcResult(response);
                 }
             }
             catch
@@ -30,5 +32,22 @@ namespace PLC.AspDotNetCore.ApiHandler
                 throw;
             }
         }
+
+        public async Task<IActionResult> HandlerAsync(Func<Task<dynamic>> funcResponse, Func<dynamic,IActionResult> funcResult)
+        {
+            try
+            {
+                    var response =
+                           await
+                                funcResponse();
+
+                return funcResult(response);
+            }
+            catch
+            {
+                throw;
+            }
+        }
+        #endregion 
     }
 }
