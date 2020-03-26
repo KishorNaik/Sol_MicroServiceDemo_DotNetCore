@@ -29,11 +29,12 @@ namespace PLC.Users.Service.Service
         #endregion
 
         #region Public Method
-        Task<UserModel> IUserEncryptionService.UserEncrypteEndPointAsync(UserModel userModel)
+        async Task<UserModel> IUserEncryptionService.UserEncrypteEndPointAsync(UserModel userModel)
         {
             try
             {
                 var data =
+                       await
                       client
                       ?.PostAsync<UserModel>(UsersApiResource.UserEncrypteEndPoint, userModel)
                       ?.WithHeader("InternalApiKey",AppResource.InternalApiKey)
