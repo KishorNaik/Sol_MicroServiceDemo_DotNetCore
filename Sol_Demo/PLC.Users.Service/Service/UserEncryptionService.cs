@@ -17,14 +17,16 @@ namespace PLC.Users.Service.Service
         #endregion
 
         #region Constructor
-        public UserEncryptionService()
+        public UserEncryptionService(Func<string,IClient> funcClient)
         {
-            string baseUrl =
-                    (Convert.ToBoolean(AppResource.IsProduction) == true)
-                    ? UsersApiResource.UserCryptoBaseUrlLive
-                    : UsersApiResource.UserCryptoBaseUrlUat;
+            //    string baseUrl =
+            //            (Convert.ToBoolean(AppResource.IsProduction) == true)
+            //            ? UsersApiResource.UserCryptoBaseUrlLive
+            //            : UsersApiResource.UserCryptoBaseUrlUat;
 
-            client = new FluentClient(baseUrl);
+            //    client = new FluentClient(baseUrl);
+
+            client = funcClient("UserEncrypteApi");
         }
         #endregion
 

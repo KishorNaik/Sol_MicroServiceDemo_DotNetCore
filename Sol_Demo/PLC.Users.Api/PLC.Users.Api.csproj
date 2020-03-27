@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\PLC.AspDotNetCore\PLC.AspDotNetCore.csproj" />
+    <ProjectReference Include="..\PLC.Mail.Service\PLC.Mail.Service.csproj" />
     <ProjectReference Include="..\PLC.Models\PLC.Models.csproj" />
     <ProjectReference Include="..\PLC.Users.Service\PLC.Users.Service.csproj" />
   </ItemGroup>

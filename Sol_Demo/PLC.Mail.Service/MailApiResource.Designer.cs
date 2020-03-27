@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PLC.Users.Service {
+namespace PLC.Mail.Service {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace PLC.Users.Service {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class UsersApiResource {
+    public class MailApiResource {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal UsersApiResource() {
+        internal MailApiResource() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace PLC.Users.Service {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("PLC.Users.Service.UsersApiResource", typeof(UsersApiResource).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("PLC.Mail.Service.MailApiResource", typeof(MailApiResource).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,38 +61,29 @@ namespace PLC.Users.Service {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to http://localhost:21557/api/mail.
         /// </summary>
-        public static string UserCryptoBaseUrlLive {
+        public static string MailBaseUrlLive {
             get {
-                return ResourceManager.GetString("UserCryptoBaseUrlLive", resourceCulture);
+                return ResourceManager.GetString("MailBaseUrlLive", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://localhost:1622/api/userscrypto.
+        ///   Looks up a localized string similar to http://localhost:21557/api/mail.
         /// </summary>
-        public static string UserCryptoBaseUrlUat {
+        public static string MailBaseUrlUat {
             get {
-                return ResourceManager.GetString("UserCryptoBaseUrlUat", resourceCulture);
+                return ResourceManager.GetString("MailBaseUrlUat", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to userdecrypte.
+        ///   Looks up a localized string similar to mailsend.
         /// </summary>
-        public static string UserDecrypteEndPoint {
+        public static string SendMailEndPoint {
             get {
-                return ResourceManager.GetString("UserDecrypteEndPoint", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to userencrypte.
-        /// </summary>
-        public static string UserEncrypteEndPoint {
-            get {
-                return ResourceManager.GetString("UserEncrypteEndPoint", resourceCulture);
+                return ResourceManager.GetString("SendMailEndPoint", resourceCulture);
             }
         }
     }

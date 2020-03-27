@@ -18,6 +18,8 @@ namespace PLC.Course.Api
             services.AddTransient<ICourseEncrypteContext, CourseEncrypteContext>();
 
             services.AddTransient<IGetCourseListRepository, GetCourseListRepository>();
+
+            
         }
     }
 }

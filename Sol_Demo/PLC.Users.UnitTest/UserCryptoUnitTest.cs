@@ -3,6 +3,10 @@ using PLC.Models.Users;
 using PLC.Users.Service.Core;
 using PLC.Users.Service.Service;
 using System.Threading.Tasks;
+using Pathoschild.Http.Client;
+using PLC.AppSetting;
+using PLC.Users.Service;
+using System;
 
 namespace PLC.Users.UnitTest
 {
@@ -12,7 +16,21 @@ namespace PLC.Users.UnitTest
         [TestMethod]
         public async Task UserEncryptionEndPointTest()
         {
-            IUserEncryptionService userEncryptionService = new UserEncryptionService();
+            IUserEncryptionService userEncryptionService = new UserEncryptionService((leKey)=> 
+            {
+                FluentClient fluentClient = null;
+                string baseUrl = null;
+                if(leKey== "UserEncrypteApi")
+                {
+                    baseUrl= 
+                        (Convert.ToBoolean(AppResource.IsProduction) == true)
+                        ? UsersApiResource.UserCryptoBaseUrlLive
+                        : UsersApiResource.UserCryptoBaseUrlUat;
+                    fluentClient = new FluentClient(baseUrl);
+                }
+
+                return fluentClient;
+            });
 
             var userModel = new UserModel()
             {
