@@ -63,9 +63,18 @@ namespace PLC.Course.Service {
         /// <summary>
         ///   Looks up a localized string similar to http://localhost:2215/api/course.
         /// </summary>
-        public static string CourseBaseUrl {
+        public static string CourseBaseUrlProduction {
             get {
-                return ResourceManager.GetString("CourseBaseUrl", resourceCulture);
+                return ResourceManager.GetString("CourseBaseUrlProduction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to http://localhost:2215/api/course.
+        /// </summary>
+        public static string CourseBaseUrlUat {
+            get {
+                return ResourceManager.GetString("CourseBaseUrlUat", resourceCulture);
             }
         }
         
