@@ -1,5 +1,4 @@
-﻿using PLC.AppSetting;
-using PLC.Dapper.Core;
+﻿using PLC.Dapper.Core;
 using PLC.Dapper.Core.DbProviders;
 using System;
 using System.Collections.Generic;
@@ -11,7 +10,6 @@ namespace PLC.Dapper.Helpers
 {
     public class SqlClientDbProviders : ISqlClientDbProviders
     {
-
         private readonly String connectionString = null;
 
         public SqlClientDbProviders(String connectionString)
@@ -19,12 +17,13 @@ namespace PLC.Dapper.Helpers
             this.connectionString = connectionString;
         }
 
-
         Task<SqlConnection> IDbProviders<SqlConnection>.GetConnectionAsync()
         {
             try
             {
-                return Task.FromResult<SqlConnection>(new SqlConnection(connectionString));
+                //return Task.FromResult<SqlConnection>(new SqlConnection(connectionString));
+
+                return Task.Run(() => new SqlConnection(connectionString));
             }
             catch
             {

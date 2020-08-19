@@ -61,38 +61,20 @@ namespace PLC.AppSetting {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Data Source=DESKTOP-MOL1H66\IDEATORS;Initial Catalog=PLC.Course;Integrated Security=True;Connect Timeout=60;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False.
+        ///   Looks up a localized string similar to Data Source=DESKTOP-EJ69NN3\SHREE;Initial Catalog=PLC.Admin;Integrated Security=True;Connect Timeout=60;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False.
         /// </summary>
-        public static string PLC_Course_Production {
+        public static string PLC_Admin_Production {
             get {
-                return ResourceManager.GetString("PLC.Course.Production", resourceCulture);
+                return ResourceManager.GetString("PLC_Admin_Production", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Data Source=DESKTOP-MOL1H66\IDEATORS;Initial Catalog=PLC.Course;Integrated Security=True;Connect Timeout=60;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False.
+        ///   Looks up a localized string similar to Data Source=DESKTOP-EJ69NN3\SHREE;Initial Catalog=PLC.Admin;Integrated Security=True;Connect Timeout=60;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False.
         /// </summary>
-        public static string PLC_Course_Uat {
+        public static string PLC_Admin_UAT {
             get {
-                return ResourceManager.GetString("PLC.Course.Uat", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Data Source=DESKTOP-MOL1H66\IDEATORS;Initial Catalog=PLC.Users;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False.
-        /// </summary>
-        public static string PLC_Users_Production {
-            get {
-                return ResourceManager.GetString("PLC.Users.Production", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Data Source=DESKTOP-MOL1H66\IDEATORS;Initial Catalog=PLC.Users;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False.
-        /// </summary>
-        public static string PLC_Users_Uat {
-            get {
-                return ResourceManager.GetString("PLC.Users.Uat", resourceCulture);
+                return ResourceManager.GetString("PLC_Admin_UAT", resourceCulture);
             }
         }
     }

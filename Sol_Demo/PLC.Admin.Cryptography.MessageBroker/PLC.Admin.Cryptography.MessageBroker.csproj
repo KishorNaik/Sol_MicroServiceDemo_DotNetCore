@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Pathoschild.Http.FluentClient" Version="4.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PLC.AppSetting\PLC.AppSetting.csproj" />
+    <ProjectReference Include="..\PLC.MessageBroker\PLC.MessageBroker.csproj" />
+  </ItemGroup>
+
+</Project>

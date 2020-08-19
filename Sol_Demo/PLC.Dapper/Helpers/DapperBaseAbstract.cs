@@ -10,7 +10,7 @@ using PLC.Dapper.Core.DapperFluent;
 
 namespace PLC.Dapper.Helpers
 {
-    public abstract class DapperBaseAbstract<TModel> where TModel :class
+    public abstract class DapperBaseAbstract<TModel> where TModel : class
     {
         #region Property
 
@@ -37,13 +37,12 @@ namespace PLC.Dapper.Helpers
         {
             try
             {
-                    DynamicParameters dynamicParameters = new DynamicParameters();
+                DynamicParameters dynamicParameters = new DynamicParameters();
 
-                    dynamicParameters
-                    .Add("@Command", command, DbType.String, ParameterDirection.Input);
+                dynamicParameters
+                .Add("@Command", command, DbType.String, ParameterDirection.Input);
 
-                    return Task.FromResult<DynamicParameters>( dynamicParameters);
-               
+                return Task.FromResult<DynamicParameters>(dynamicParameters);
             }
             catch
             {
@@ -54,11 +53,11 @@ namespace PLC.Dapper.Helpers
         #endregion Private Methods
 
         #region Protected Method
+
         protected async Task<dynamic> ReadMessageFromUspAsync(SqlMapper.GridReader queryData)
         {
             try
             {
-
                 var dapperCommandFromProc
                     =
                     (
@@ -82,28 +81,26 @@ namespace PLC.Dapper.Helpers
             }
         }
 
-        protected  Task<dynamic> ReadMessageFromUspAsync(IEnumerable<dynamic> listDynamic)
+        protected Task<dynamic> ReadMessageFromUspAsync(IEnumerable<dynamic> listDynamic)
         {
             dynamic data = null;
             try
             {
+                if (listDynamic != null)
+                {
+                    data =
+                        listDynamic
+                        .AsEnumerable()
+                        .Select((leCommand) => new
+                        {
+                            Command = leCommand.Command
+                        })
+                        .ToList()
+                        .FirstOrDefault()
+                        .Command;
+                }
 
-                    if (listDynamic != null)
-                    {
-                        data =
-                            listDynamic
-                            .AsEnumerable()
-                            .Select((leCommand) => new
-                            {
-                                Command = leCommand.Command
-                            })
-                            .ToList()
-                            .FirstOrDefault()
-                            .Command;
-                    }
-
-                    return Task.FromResult<dynamic>(data);
-
+                return Task.FromResult<dynamic>(data);
             }
             catch
             {
@@ -111,11 +108,11 @@ namespace PLC.Dapper.Helpers
             }
         }
 
-        protected virtual async Task<DynamicParameters> SetParameterAsync(String command, TModel model = null)
+        protected virtual Task<DynamicParameters> SetParameterAsync(String command, TModel model = null)
         {
             try
             {
-                return await ParameterAsync(command);
+                return ParameterAsync(command);
             }
             catch
             {
@@ -123,16 +120,18 @@ namespace PLC.Dapper.Helpers
             }
         }
 
-        protected async virtual Task<DynamicParameters> GetParameterAsync(string command, TModel model = null)
+        protected virtual Task<DynamicParameters> GetParameterAsync(string command, TModel model = null)
         {
             try
             {
-                return await ParameterAsync(command);
+                return ParameterAsync(command);
             }
-            finally
-            { }
+            catch
+            {
+                throw;
+            }
         }
-        #endregion 
 
+        #endregion Protected Method
     }
 }

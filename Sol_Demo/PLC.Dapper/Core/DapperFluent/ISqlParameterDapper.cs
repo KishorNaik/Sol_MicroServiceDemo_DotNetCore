@@ -13,8 +13,8 @@ namespace PLC.Dapper.Core.DapperFluent
 
         ISqlCommandDapper SqlCommand<T>(Func<IDbConnection, DynamicParameters, T> funcCommand);
 
-        ISqlCommandDapper SqlCommandAsync(Func<IDbConnection, DynamicParameters, Task<dynamic>> funcCommand);
+        ISqlCommandDapper SqlCommand(Func<IDbConnection, DynamicParameters, Task<dynamic>> funcCommand);
 
-        ISqlCommandDapper SqlCommandAsync<T>(Func<IDbConnection, DynamicParameters, Task<T>> funcCommand);
+        ISqlCommandDapper SqlCommand<T>(Func<IDbConnection, DynamicParameters, Task<T>> funcCommand);
     }
 }

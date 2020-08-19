@@ -61,7 +61,7 @@ namespace PLC.AppSetting {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ashu5VAN40SrteigiregslWvgbgkszidVUqyHCe8J0HvGOzA6TOaeyFI2drYEzVXDJgMIwcOPw9gtTA6zCR8lVmc5MNiA5zkGbD2giJgoaTgFds3Nxtx6Pr204kTVUul55FDK2ObxtJCJPG6jPO9fgvMxszVAaXWIJj6Fq2gZNauAfZT3rw5TkDChxsRraP11JmlfGLEzx.
+        ///   Looks up a localized string similar to eshaan5VAN40SrteigiregslWvgbgkszidVUqyHCe8J0HvGOzA6TOaeyFI2drYEzVXDJgMIwcOPw9gtTA6zCR8lVmc5MNiA5zkGbD2giJgoaTgFds3Nxtx6Pr204kTVUul55FDK2ObxtJCJPG6jPO9fgvMxszVAaXWIJj6Fq2gZNauAfZT3rw5TkDChxsRraP11JmlfGLEzx.
         /// </summary>
         public static string CryptoSecretKey {
             get {

@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PLC.Command\PLC.ApiCommand.csproj" />
+    <ProjectReference Include="..\PLC.Configuration\PLC.Configuration.csproj" />
+  </ItemGroup>
+
+
+</Project>

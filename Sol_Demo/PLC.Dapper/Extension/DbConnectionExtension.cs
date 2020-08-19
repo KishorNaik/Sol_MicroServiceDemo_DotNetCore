@@ -8,46 +8,36 @@ namespace PLC.Dapper.Extension
 {
     public static class DbConnectionExtension
     {
-        public static Task OpenConnectionAsync(this IDbConnection dbConnection)
+        public static void OpenConnection(this IDbConnection dbConnection)
         {
-
-            return Task.Run(() =>
+            try
             {
-                try
+                if (dbConnection?.State == ConnectionState.Closed || dbConnection?.State == ConnectionState.Broken)
                 {
-                    if (dbConnection?.State == ConnectionState.Closed || dbConnection?.State == ConnectionState.Broken)
-                    {
-                        dbConnection?.Open();
-                    }
+                    dbConnection?.Open();
                 }
-                catch
-                {
-                    throw;
-                }
-            });
-            
+            }
+            catch
+            {
+                throw;
+            }
         }
 
-        public static Task CloseConnectionAsync(this IDbConnection dbConnection)
+        public static void CloseConnection(this IDbConnection dbConnection)
         {
-
-             return Task.Run(() => {
-
-                try
+            try
+            {
+                if (dbConnection?.State == ConnectionState.Open)
                 {
-                    if (dbConnection?.State == ConnectionState.Open)
-                    {
-                        dbConnection?.Close();
-                        dbConnection.Dispose();
-                        dbConnection = null;
-                    }
+                    dbConnection?.Close();
+                    dbConnection.Dispose();
+                    dbConnection = null;
                 }
-                catch
-                {
-                    throw;
-                }
-            });
-
+            }
+            catch
+            {
+                throw;
+            }
         }
     }
 }

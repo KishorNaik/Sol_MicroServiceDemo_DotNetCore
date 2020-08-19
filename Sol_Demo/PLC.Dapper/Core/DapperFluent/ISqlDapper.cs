@@ -7,6 +7,6 @@ namespace PLC.Dapper.Core.DapperFluent
 {
     public interface ISqlDapper
     {
-        ISqlConnectionDapper SqlOpenConnectionAsync(IDbConnection dbConnection);
+        ISqlConnectionDapper SqlOpenConnection(IDbConnection dbConnection);
     }
 }

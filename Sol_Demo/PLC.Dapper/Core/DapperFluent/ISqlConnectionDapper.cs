@@ -8,9 +8,8 @@ namespace PLC.Dapper.Core.DapperFluent
 {
     public interface ISqlConnectionDapper
     {
-
-        ISqlParameterDapper SqlParameterAsync(Func<Task<DynamicParameters>> funcSqlParameters);
-
         ISqlParameterDapper SqlParameter(Func<DynamicParameters> funcSqlParameter);
+
+        ISqlParameterDapper SqlParameter(Func<Task<DynamicParameters>> funcSqlParameter);
     }
 }
