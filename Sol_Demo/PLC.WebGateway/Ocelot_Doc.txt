@@ -1,0 +1,62 @@
+﻿Step 1:
+Install package from nuget
+Install-Package Ocelot
+
+Step 2:
+Configure ocelot.json file
+
+{
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/api/admin/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 18160
+        }
+      ],
+      "UpstreamPathTemplate": "/api/admin/{everything}",
+      "UpstreamHttpMethod": [
+        "GET",
+        "POST",
+        "PUT",
+        "DELETE"
+      ]
+    }
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "http://localhost:32318"
+  }
+}
+
+Step 3:
+In program.cs file file add the following code on main method
+
+ new WebHostBuilder()
+              .UseKestrel()
+              .UseContentRoot(Directory.GetCurrentDirectory())
+              .ConfigureAppConfiguration((hostingContext, config) =>
+              {
+                  config
+                      .SetBasePath(hostingContext.HostingEnvironment.ContentRootPath)
+                      .AddJsonFile("appsettings.json", true, true)
+                      .AddJsonFile($"appsettings.{hostingContext.HostingEnvironment.EnvironmentName}.json", true, true)
+                      .AddJsonFile("ocelot.json")
+                      .AddEnvironmentVariables();
+              })
+              .ConfigureServices(s =>
+              {
+                  s.AddOcelot();
+              })
+              .ConfigureLogging((hostingContext, logging) =>
+              {
+                  //add your logging
+              })
+              .UseIIS()
+              .Configure(app =>
+              {
+                  app.UseOcelot().Wait();
+              })
+              .Build()
+              .Run();
