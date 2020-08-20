@@ -18,5 +18,9 @@ namespace PLC.Admin.Api.Infrastructures.ResultSets
         public String Role { get; set; }
 
         public String UserName { get; set; }
+
+        public String Salt { get; set; }
+
+        public String Hash { get; set; }
     }
 }

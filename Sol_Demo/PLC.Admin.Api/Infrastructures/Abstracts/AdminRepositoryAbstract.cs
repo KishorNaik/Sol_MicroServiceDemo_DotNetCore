@@ -38,11 +38,15 @@ namespace PLC.Admin.Api.Infrastructures.Abstracts
             }
         }
 
-        protected override Task<DynamicParameters> GetParameterAsync(string command, AdminModel model = null)
+        protected async override Task<DynamicParameters> GetParameterAsync(string command, AdminModel model = null)
         {
             try
             {
-                return base.GetParameterAsync(command, model);
+                var dynamicParameterObj = await base.GetParameterAsync(command, model);
+
+                dynamicParameterObj.Add("@UserName", model?.AdminLogin?.UserName, direction: ParameterDirection.Input);
+
+                return dynamicParameterObj;
             }
             catch
             {

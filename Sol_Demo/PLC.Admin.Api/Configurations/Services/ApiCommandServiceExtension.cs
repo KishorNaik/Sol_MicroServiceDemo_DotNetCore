@@ -14,6 +14,7 @@ namespace PLC.Admin.Api.Configurations.Services
         {
             services.AddTransient<IAddAdminApiCommandHandler, AddAdminApiCommandHandler>();
             services.AddTransient<IGetAllAdminApiCommandHandler, GetAllAdminApiCommandHandler>();
+            services.AddTransient<ILoginAdminApiCommandHandler, LoginAdminApiCommandHandler>();
         }
     }
 }

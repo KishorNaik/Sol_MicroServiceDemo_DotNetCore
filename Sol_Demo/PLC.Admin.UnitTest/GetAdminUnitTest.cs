@@ -19,13 +19,13 @@ namespace PLC.Admin.UnitTest
         private Mock<IGetAllAdminRepository> getAllAdminRepositoryMock = null;
         private Mock<IAdminEncrypteListEventHandler> getEncrypteListEventHandlerMock = null;
 
-        private IGetAllAdminQuery getAllAdminQuery = null;
+        private IGetAllAdminQueryHandler getAllAdminQuery = null;
 
         public GetAdminUnitTest()
         {
             getAllAdminRepositoryMock = new Mock<IGetAllAdminRepository>();
             getEncrypteListEventHandlerMock = new Mock<IAdminEncrypteListEventHandler>();
-            getAllAdminQuery = new GetAllAdminQuery(getAllAdminRepositoryMock.Object, getEncrypteListEventHandlerMock.Object);
+            getAllAdminQuery = new GetAllAdminQueryHandler(getAllAdminRepositoryMock.Object, getEncrypteListEventHandlerMock.Object);
         }
 
         [TestMethod]

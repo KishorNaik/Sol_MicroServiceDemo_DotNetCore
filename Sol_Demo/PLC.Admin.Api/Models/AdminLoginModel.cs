@@ -20,5 +20,8 @@ namespace PLC.Admin.Api.Models
 
         [DataMember(EmitDefaultValue = false)]
         public String Hash { get; set; }
+
+        [DataMember(EmitDefaultValue = false)]
+        public String JwtToken { get; set; }
     }
 }

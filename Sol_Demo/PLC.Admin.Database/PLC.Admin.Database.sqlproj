@@ -60,6 +60,7 @@
     <Folder Include="Tables" />
     <Folder Include="StoredProcedures" />
     <Folder Include="Functions" />
+    <Folder Include="Views" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Schemas\AdminSchema.sql" />
@@ -68,5 +69,6 @@
     <Build Include="StoredProcedures\uspSetAdmin.sql" />
     <Build Include="Functions\udfIsAdminExists.sql" />
     <Build Include="StoredProcedures\uspGetAdmin.sql" />
+    <Build Include="Views\udvAdminLoginResultSet.sql" />
   </ItemGroup>
 </Project>

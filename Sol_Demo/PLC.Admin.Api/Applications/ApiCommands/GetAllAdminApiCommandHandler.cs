@@ -12,9 +12,9 @@ namespace PLC.Admin.Api.Applications.ApiCommands
 {
     public sealed class GetAllAdminApiCommandHandler : IGetAllAdminApiCommandHandler
     {
-        private readonly IGetAllAdminQuery getAllAdminQuery = null;
+        private readonly IGetAllAdminQueryHandler getAllAdminQuery = null;
 
-        public GetAllAdminApiCommandHandler(IGetAllAdminQuery getAllAdminQuery)
+        public GetAllAdminApiCommandHandler(IGetAllAdminQueryHandler getAllAdminQuery)
         {
             this.getAllAdminQuery = getAllAdminQuery;
         }

@@ -14,6 +14,7 @@ namespace PLC.Admin.Api.Configurations.Services
         {
             services?.AddTransient<IAddAdminRepository, AddAdminRepository>();
             services.AddTransient<IGetAllAdminRepository, GetAllAdminRepository>();
+            services.AddTransient<ILoginAdminRepository, LoginAdminRepository>();
         }
     }
 }

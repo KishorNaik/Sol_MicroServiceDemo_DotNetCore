@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="HashPassword" Version="1.0.0" />
+    <PackageReference Include="JwtAuthAsp.netCore" Version="1.0.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -18,21 +19,6 @@
     <ProjectReference Include="..\PLC.MessageBroker\PLC.MessageBroker.csproj" />
     <ProjectReference Include="..\PLC.Repository\PLC.Repository.csproj" />
     <ProjectReference Include="..\PLC.UtilityModel\PLC.UtilityModel.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Update="ApiResource.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>ApiResource.resx</DependentUpon>
-    </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Update="ApiResource.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>ApiResource.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
   </ItemGroup>
 
 

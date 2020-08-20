@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AuthJwt.Services;
+using JwtAuth.Middlewares;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -43,6 +45,9 @@ namespace PLC.Admin.Api
             // Add GZip Response Compression
             services.AddGzipResponseCompression();
 
+            // Jwt Token
+            services.AddJwtToken(AppResource.JwtSecretKey);
+
             services.AddApiCommandConfig();
 
             services.AddMessageBrokerConfig(isProduction);
@@ -65,6 +70,9 @@ namespace PLC.Admin.Api
             }
 
             app.UseRouting();
+
+            // Use Jwt Token Middleware
+            app.UseJwtToken();
 
             app.UseAuthorization();
 

@@ -10,12 +10,12 @@ using System.Threading.Tasks;
 
 namespace PLC.Admin.Api.Business.Query
 {
-    public sealed class GetAllAdminQuery : IGetAllAdminQuery
+    public sealed class GetAllAdminQueryHandler : IGetAllAdminQueryHandler
     {
         private readonly IGetAllAdminRepository getAllAdminRepository = null;
         private readonly IAdminEncrypteListEventHandler adminEncrypteListEventHandler = null;
 
-        public GetAllAdminQuery(IGetAllAdminRepository getAllAdminRepository, IAdminEncrypteListEventHandler adminEncrypteListEventHandler)
+        public GetAllAdminQueryHandler(IGetAllAdminRepository getAllAdminRepository, IAdminEncrypteListEventHandler adminEncrypteListEventHandler)
         {
             this.getAllAdminRepository = getAllAdminRepository;
             this.adminEncrypteListEventHandler = adminEncrypteListEventHandler;

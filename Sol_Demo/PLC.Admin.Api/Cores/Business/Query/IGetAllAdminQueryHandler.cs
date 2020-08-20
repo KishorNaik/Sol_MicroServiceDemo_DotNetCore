@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PLC.Admin.Api.Cores.Business.Query
 {
-    public interface IGetAllAdminQuery : IQueryHandler<Object>
+    public interface IGetAllAdminQueryHandler : IQueryHandler<Object>
     {
     }
 }

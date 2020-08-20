@@ -12,7 +12,8 @@ namespace PLC.Admin.Api.Configurations.Services
     {
         public static void AddQueryConfig(this IServiceCollection services)
         {
-            services?.AddTransient<IGetAllAdminQuery, GetAllAdminQuery>();
+            services?.AddTransient<IGetAllAdminQueryHandler, GetAllAdminQueryHandler>();
+            services?.AddTransient<ILoginAdminQueryHandler, LoginAdminQueryHandler>();
         }
     }
 }
