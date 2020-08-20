@@ -27,7 +27,7 @@ namespace PLC.Admin.Api.Business.Query
             {
                 var getData = await this.getAllAdminRepository?.GetAllAsync();
 
-                if (getData?.Count == 0) return new ErrorModel() { StatusCode = 401, Message = "No data found" };
+                if (getData == null || getData?.Count == 0) return new ErrorModel() { StatusCode = 401, Message = "No data found" };
 
                 var encryptedList = await adminEncrypteListEventHandler?.EventHandleAsync(getData.ToList());
 

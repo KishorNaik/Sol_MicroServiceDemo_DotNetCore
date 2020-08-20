@@ -82,14 +82,22 @@ namespace PLC.Admin.UnitTest
                 }
             };
 
-            //var adminModel = new Mock<AdminModel>();
+            //adminRepositoryMock
+            //   .Setup((r) => r.AddAsync(adminModel))
+            //   .ReturnsAsync(true);
+
+            //adminDecrypteEventHandlerMock
+            //    .Setup((e) => e.EventHandleAsync(adminModel))
+            //    .ReturnsAsync(
+            //       adminModel
+            //    );
 
             adminRepositoryMock
-               .Setup((r) => r.AddAsync(adminModel))
-               .ReturnsAsync(true);
+              .Setup((r) => r.AddAsync(It.IsAny<AdminModel>()))
+              .ReturnsAsync(true);
 
             adminDecrypteEventHandlerMock
-                .Setup((e) => e.EventHandleAsync(adminModel))
+                .Setup((e) => e.EventHandleAsync(It.IsAny<AdminModel>()))
                 .ReturnsAsync(
                    adminModel
                 );
