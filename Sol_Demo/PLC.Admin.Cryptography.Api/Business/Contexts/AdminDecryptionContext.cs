@@ -26,11 +26,11 @@ namespace PLC.Admin.Cryptography.Api.Business.Contexts
                 {
                     if (adminModel != null)
                     {
-                        adminModel.AdminIdentity = (!string.IsNullOrEmpty(adminModel?.AdminIdentity)) ? dataProtector.Unprotect(adminModel.AdminIdentity) : null;
-                        adminModel.FirstName = (!string.IsNullOrEmpty(adminModel?.FirstName)) ? dataProtector.Unprotect(adminModel.FirstName) : null;
-                        adminModel.LastName = (!string.IsNullOrEmpty(adminModel?.LastName)) ? dataProtector.Unprotect(adminModel.LastName) : null;
-                        adminModel.EmailId = (!string.IsNullOrEmpty(adminModel?.EmailId)) ? dataProtector.Unprotect(adminModel.EmailId) : null;
-                        adminModel.Role = (!string.IsNullOrEmpty(adminModel?.Role)) ? dataProtector.Unprotect(adminModel.Role) : null;
+                        adminModel.AdminIdentity = (!string.IsNullOrEmpty(adminModel?.AdminIdentity)) ? dataProtector.Unprotect(adminModel?.AdminIdentity) : null;
+                        adminModel.FirstName = (!string.IsNullOrEmpty(adminModel?.FirstName)) ? dataProtector.Unprotect(adminModel?.FirstName) : null;
+                        adminModel.LastName = (!string.IsNullOrEmpty(adminModel?.LastName)) ? dataProtector.Unprotect(adminModel?.LastName) : null;
+                        adminModel.EmailId = (!string.IsNullOrEmpty(adminModel?.EmailId)) ? dataProtector.Unprotect(adminModel?.EmailId) : null;
+                        adminModel.Role = (!string.IsNullOrEmpty(adminModel?.Role)) ? dataProtector.Unprotect(adminModel?.Role) : null;
                     }
                 });
             }

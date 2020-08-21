@@ -14,6 +14,7 @@ namespace PLC.Admin.Api.Configurations.Services
         {
             services?.AddTransient<IAdminDecrypteEventHandler, AdminDecrypteEventHandler>();
             services?.AddTransient<IAdminEncrypteListEventHandler, AdminEncrypteListEventHandler>();
+            services?.AddTransient<IAdminEncrypteEventHandler, AdminEncrypteEventHandler>();
         }
     }
 }

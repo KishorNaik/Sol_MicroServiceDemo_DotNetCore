@@ -19,16 +19,19 @@ namespace PLC.Admin.Api.Business.Query
         private readonly IAdminDecrypteEventHandler adminDecrypteEventHandler = null;
         private readonly ILoginAdminRepository loginAdminRepository = null;
         private readonly IGenerateJwtToken generateJwtToken = null;
+        private readonly IAdminEncrypteEventHandler adminEncrypteEventHandler = null;
 
         public LoginAdminQueryHandler(
             IAdminDecrypteEventHandler adminDecrypteEventHandler,
             ILoginAdminRepository loginAdminRepository,
-            IGenerateJwtToken generateJwtToken
+            IGenerateJwtToken generateJwtToken,
+            IAdminEncrypteEventHandler adminEncrypteEventHandler
             )
         {
             this.adminDecrypteEventHandler = adminDecrypteEventHandler;
             this.loginAdminRepository = loginAdminRepository;
             this.generateJwtToken = generateJwtToken;
+            this.adminEncrypteEventHandler = adminEncrypteEventHandler;
         }
 
         private ErrorModel ErrorMessage
@@ -36,7 +39,7 @@ namespace PLC.Admin.Api.Business.Query
             get => new ErrorModel() { StatusCode = 200, Message = "User Name & Password does not matched" };
         }
 
-        private async Task<AdminModel> AddJwtTokenAsync(AdminModel adminModel)
+        private async Task<String> AddJwtTokenAsync(AdminModel adminModel)
         {
             try
             {
@@ -45,24 +48,7 @@ namespace PLC.Admin.Api.Business.Query
                 claims.Add(new Claim(ClaimTypes.Role, adminModel?.Role)); // Role Base
 
                 // Generate Token
-                adminModel.AdminLogin.JwtToken = await generateJwtToken.CreateJwtTokenAsync(AppResource.JwtSecretKey, claims.ToArray(), DateTime.Now.AddDays(1));
-
-                return adminModel;
-            }
-            catch
-            {
-                throw;
-            }
-        }
-
-        private async Task<dynamic> IsValidLoginAsync(bool isFlag, AdminModel adminModel)
-        {
-            try
-            {
-                return
-                    (isFlag == true)
-                    ? (dynamic)await this.AddJwtTokenAsync(adminModel)
-                    : (dynamic)ErrorMessage;
+                return await generateJwtToken.CreateJwtTokenAsync(AppResource.JwtSecretKey, claims.ToArray(), DateTime.Now.AddDays(1));
             }
             catch
             {
@@ -74,15 +60,30 @@ namespace PLC.Admin.Api.Business.Query
         {
             try
             {
-                adminModel = await adminDecrypteEventHandler?.EventHandleAsync(adminModel);
+                var taskAdminData = adminDecrypteEventHandler?.EventHandleAsync(adminModel);
 
-                var adminData = await loginAdminRepository?.LoginAsync(adminModel);
+                var adminData = await loginAdminRepository?.LoginAsync(adminModel = await taskAdminData);
 
                 if (adminData != null)
                 {
                     var flag = await Hash.ValidateAsync(adminModel?.AdminLogin?.Password, adminData?.AdminLogin?.Salt, adminData?.AdminLogin?.Hash, ByteRange.byte256);
 
-                    return await this.IsValidLoginAsync(flag, adminData);
+                    if (flag == true)
+                    {
+                        adminData.AdminLogin.Salt = null;
+                        adminData.AdminLogin.Hash = null;
+
+                        var taskAddJwtToken = this.AddJwtTokenAsync(adminData);
+                        var taskEncrypteData = adminEncrypteEventHandler.EventHandleAsync(adminData);
+
+                        var encrypteData = await taskEncrypteData;
+                        encrypteData.AdminLogin.JwtToken = await taskAddJwtToken;
+                        return encrypteData;
+                    }
+                    else
+                    {
+                        return ErrorMessage;
+                    }
                 }
                 else
                 {
