@@ -31,7 +31,15 @@ namespace PLC.Admin.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddControllers((config) =>
+            {
+                config.CacheProfiles.Add("Default-Cache", new CacheProfile()
+                {
+                    Duration = 30,
+                    NoStore = false,
+                    Location = ResponseCacheLocation.Any
+                });
+            });
 
             // Add Json Service
             services.AddJson(true);
@@ -47,6 +55,8 @@ namespace PLC.Admin.Api
 
             // Jwt Token
             services.AddJwtToken(AppResource.JwtSecretKey);
+
+            services.AddResponseCaching();
 
             services.AddApiCommandConfig();
 
@@ -81,6 +91,8 @@ namespace PLC.Admin.Api
 
             // Use Custom Exception Handler
             app.UseException();
+
+            app.UseResponseCaching();
 
             app.UseEndpoints(endpoints =>
             {

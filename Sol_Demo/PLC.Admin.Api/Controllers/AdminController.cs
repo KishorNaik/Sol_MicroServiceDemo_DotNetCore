@@ -39,6 +39,7 @@ namespace PLC.Admin.Api.Controllers
 
         [HttpPost("getall")]
         [Authorize(Roles = "Admin")]
+        [ResponseCache(CacheProfileName = "Default-Cache")]
         public Task<IActionResult> GetAllDataAsync(
             [FromServices] IGetAllAdminApiCommandHandler getAllAdminApiCommandHandler
             ) => getAllAdminApiCommandHandler?.ExecuteAsync(this);
