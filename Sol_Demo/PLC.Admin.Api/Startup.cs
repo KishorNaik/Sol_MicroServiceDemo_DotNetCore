@@ -16,6 +16,7 @@ using PLC.AppSetting;
 using PLC.Configuration.Configuration;
 using PLC.Configuration.Middlewares;
 using PLC.Configuration.Services;
+using PLC.EventStore.Configurations;
 
 namespace PLC.Admin.Api
 {
@@ -56,7 +57,12 @@ namespace PLC.Admin.Api
             // Jwt Token
             services.AddJwtToken(AppResource.JwtSecretKey);
 
+            // Background Task
+            services.AddBackgroundTask();
+
             services.AddResponseCaching();
+
+            services.AddEventStore();
 
             services.AddApiCommandConfig();
 

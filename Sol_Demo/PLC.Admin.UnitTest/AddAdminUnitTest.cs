@@ -1,3 +1,4 @@
+using DalSoft.Hosting.BackgroundQueue;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using PLC.Admin.Api.Business.Commands;
@@ -7,7 +8,10 @@ using PLC.Admin.Api.Cores.Infrastructures.Repository;
 using PLC.Admin.Api.Models;
 using PLC.CQ;
 using PLC.EventHandler;
+using PLC.EventStore.Core;
+using PLC.EventStore.Models;
 using PLC.Repository;
+using System;
 using System.Security.Cryptography.Xml;
 using System.Threading.Tasks;
 
@@ -18,13 +22,18 @@ namespace PLC.Admin.UnitTest
     {
         private Mock<IAddAdminRepository> adminRepositoryMock = null;
         private Mock<IAdminDecrypteEventHandler> adminDecrypteEventHandlerMock = null;
+        private BackgroundQueue backgroundQueueMock = null;
+        private Mock<IEventStoreRepository> eventStoreRepositoryMock = null;
+
         private IAddAdminCommandHandler addAdminCommandHandler = null;
 
         public AddAdminUnitTest()
         {
             adminRepositoryMock = new Mock<IAddAdminRepository>();
             adminDecrypteEventHandlerMock = new Mock<IAdminDecrypteEventHandler>();
-            addAdminCommandHandler = new AddAdminCommandHandler(adminRepositoryMock.Object, adminDecrypteEventHandlerMock.Object);
+            backgroundQueueMock = new BackgroundQueue((e) => { }, 1, 1000);
+            eventStoreRepositoryMock = new Mock<IEventStoreRepository>();
+            addAdminCommandHandler = new AddAdminCommandHandler(adminRepositoryMock.Object, adminDecrypteEventHandlerMock.Object, backgroundQueueMock, eventStoreRepositoryMock.Object);
         }
 
         [TestMethod]
@@ -101,6 +110,9 @@ namespace PLC.Admin.UnitTest
                 .ReturnsAsync(
                    adminModel
                 );
+
+            eventStoreRepositoryMock
+                .Setup((e) => e.SaveAsync(It.IsAny<EventModel>()));
 
             var data = await addAdminCommandHandler.HandleAsync(adminModel);
 

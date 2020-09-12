@@ -1,9 +1,10 @@
-﻿using PLC.EventSource.Implementation.Models;
+﻿using PLC.EventSource;
+using PLC.EventStore.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace PLC.EventSource.Implementation.Core
+namespace PLC.EventStore.Core
 {
     public interface IEventStoreRepository : ICreateEventStore<EventModel>, IReadEventSource<EventModel>
     {

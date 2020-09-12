@@ -70,5 +70,6 @@
     <Build Include="Functions\udfIsAdminExists.sql" />
     <Build Include="StoredProcedures\uspGetAdmin.sql" />
     <Build Include="Views\udvAdminLoginResultSet.sql" />
+    <Build Include="Tables\EventStore.sql" />
   </ItemGroup>
 </Project>

@@ -1,6 +1,4 @@
-﻿using PLC.EventSource.Implementation.Core;
-using PLC.EventSource.Implementation.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,8 +8,11 @@ using PLC.Dapper.Helpers;
 using System.Data;
 using PLC.Dapper.Core.DbProviders;
 using System.Runtime.CompilerServices;
+using PLC.EventStore.Models;
+using PLC.EventStore.Core;
+using PLC.EventSource;
 
-namespace PLC.EventSource.Implementation.Repository
+namespace PLC.EventStore.Repository
 {
     public sealed class EventStoreRepository : DapperBaseAbstract<EventModel>, IEventStoreRepository
     {

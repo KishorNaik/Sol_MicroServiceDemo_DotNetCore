@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace PLC.EventSource.Implementation.Models
+namespace PLC.EventStore.Models
 {
     public class EventModel
     {

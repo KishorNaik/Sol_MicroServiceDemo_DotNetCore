@@ -16,6 +16,8 @@
     <ProjectReference Include="..\PLC.CQ\PLC.CQ.csproj" />
     <ProjectReference Include="..\PLC.Dapper\PLC.Dapper.csproj" />
     <ProjectReference Include="..\PLC.EventHandler\PLC.EventHandler.csproj" />
+    <ProjectReference Include="..\PLC.EventSource\PLC.EventSource.csproj" />
+    <ProjectReference Include="..\PLC.EventStore\PLC.EventStore.csproj" />
     <ProjectReference Include="..\PLC.MessageBroker\PLC.MessageBroker.csproj" />
     <ProjectReference Include="..\PLC.Repository\PLC.Repository.csproj" />
     <ProjectReference Include="..\PLC.UtilityModel\PLC.UtilityModel.csproj" />
