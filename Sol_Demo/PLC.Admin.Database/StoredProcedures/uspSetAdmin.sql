@@ -47,8 +47,6 @@ AS
 									LastName,
 									EmailId,
 									Role,
-									TransactionId,
-									IsCommit,
 									IsDelete,
 									CreatedDate
 								)
@@ -59,8 +57,6 @@ AS
 									@LastName,
 									@EmailId,
 									@Role,
-									@TransactionId,
-									1,
 									0,
 									GETDATE()
 								)
@@ -74,8 +70,6 @@ AS
 									Password,
 									Salt,
 									Hash,
-									TransactionId,
-									IsCommit,
 									IsDelete,
 									CreatedDate
 								)
@@ -86,8 +80,6 @@ AS
 									@Password,
 									@Salt,
 									@Hash,
-									@TransactionId,
-									1,
 									0,
 									GETDATE()
 								)

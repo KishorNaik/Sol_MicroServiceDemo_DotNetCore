@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using PLC.EventStore.Core;
+using PLC.EventStore.Core.Repository;
 using PLC.EventStore.Repository;
 using System;
 using System.Collections.Generic;

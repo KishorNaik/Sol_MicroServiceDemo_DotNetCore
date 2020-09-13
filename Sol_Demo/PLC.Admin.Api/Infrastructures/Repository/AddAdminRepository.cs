@@ -22,6 +22,8 @@ namespace PLC.Admin.Api.Infrastructures.Repository
             this.sqlClientDbProviders = sqlClientDbProviders;
         }
 
+        public event EventHandler<AdminModel> EventStoreHandler;
+
         async Task<bool> IAddRepository<AdminModel, bool>.AddAsync(AdminModel model)
         {
             try
@@ -30,6 +32,7 @@ namespace PLC.Admin.Api.Infrastructures.Repository
                 var taskParameter = base.SetParameterAsync("Add-Admin", model);
 
                 var taskAdd =
+                        await
                         base
                         .DapperFluent
                         ?.Value
@@ -48,7 +51,12 @@ namespace PLC.Admin.Api.Infrastructures.Repository
                         })
                         ?.ResultAsync<bool>();
 
-                return (await taskAdd);
+                if (taskAdd == true)
+                {
+                    EventStoreHandler?.Invoke(this, model);
+                }
+
+                return taskAdd;
             }
             catch
             {

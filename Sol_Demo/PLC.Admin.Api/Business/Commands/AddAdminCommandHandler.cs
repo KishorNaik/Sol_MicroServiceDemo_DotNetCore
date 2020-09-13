@@ -6,7 +6,7 @@ using PLC.Admin.Api.Cores.Business.Events;
 using PLC.Admin.Api.Cores.Infrastructures.Repository;
 using PLC.Admin.Api.Models;
 using PLC.CQ;
-using PLC.EventStore.Core;
+using PLC.EventStore.Core.Repository;
 using PLC.EventStore.Models;
 using System;
 using System.Collections.Generic;
@@ -36,10 +36,7 @@ namespace PLC.Admin.Api.Business.Commands
             this.eventStoreRepository = eventStoreRepository;
         }
 
-        //public AddAdminCommandHandler(IAddAdminRepository addAdminRepository)
-        //{
-        //    this.addAdminRepository = addAdminRepository;
-        //}
+        private String TransactionId { get; set; }
 
         private async Task PasswordHashAsync(AdminModel adminModel)
         {
@@ -58,28 +55,41 @@ namespace PLC.Admin.Api.Business.Commands
         {
             try
             {
-                string transactionId = Guid.NewGuid().ToString("N");
+                TransactionId = Guid.NewGuid().ToString("N");
 
                 model = await adminDecrypteEventHandler.EventHandleAsync(model);
 
                 await PasswordHashAsync(model);
 
-                var taskAddRepository = await this.addAdminRepository.AddAsync(model);
+                this.addAdminRepository.EventStoreHandler += AddAdminRepository_EventStoreHandler;
 
-                // Record Add Command to Event Store
-                backgroundQueue.Enqueue((cancellationToken) => this.eventStoreRepository?.SaveAsync(new EventModel()
-                {
-                    TransactionId = transactionId,
-                    EventName = "AddAdminCommand",
-                    Data = JsonConvert.SerializeObject(model),
-                    CreatedDate = DateTime.Now.ToString()
-                }));
+                var taskAddRepository = await this.addAdminRepository.AddAsync(model);
 
                 return taskAddRepository;
             }
             catch
             {
                 throw;
+            }
+        }
+
+        private void AddAdminRepository_EventStoreHandler(object sender, AdminModel e)
+        {
+            try
+            {
+                // Record Add Command to Event Store
+                backgroundQueue.Enqueue((cancellationToken) => this.eventStoreRepository?.SaveAsync(new EventModel()
+                {
+                    TransactionId = TransactionId,
+                    EventName = "AddAdminCommand",
+                    OldData = null,
+                    NewData = JsonConvert.SerializeObject(e),
+                    CreatedDate = DateTime.Now.ToString()
+                }));
+            }
+            finally
+            {
+                this.addAdminRepository.EventStoreHandler -= AddAdminRepository_EventStoreHandler;
             }
         }
     }

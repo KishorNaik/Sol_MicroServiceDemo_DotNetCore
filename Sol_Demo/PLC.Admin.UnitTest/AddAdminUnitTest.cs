@@ -9,6 +9,7 @@ using PLC.Admin.Api.Models;
 using PLC.CQ;
 using PLC.EventHandler;
 using PLC.EventStore.Core;
+using PLC.EventStore.Core.Repository;
 using PLC.EventStore.Models;
 using PLC.Repository;
 using System;
@@ -33,6 +34,7 @@ namespace PLC.Admin.UnitTest
             adminDecrypteEventHandlerMock = new Mock<IAdminDecrypteEventHandler>();
             backgroundQueueMock = new BackgroundQueue((e) => { }, 1, 1000);
             eventStoreRepositoryMock = new Mock<IEventStoreRepository>();
+
             addAdminCommandHandler = new AddAdminCommandHandler(adminRepositoryMock.Object, adminDecrypteEventHandlerMock.Object, backgroundQueueMock, eventStoreRepositoryMock.Object);
         }
 

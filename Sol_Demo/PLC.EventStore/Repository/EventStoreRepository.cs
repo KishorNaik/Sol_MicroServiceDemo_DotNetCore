@@ -9,7 +9,7 @@ using System.Data;
 using PLC.Dapper.Core.DbProviders;
 using System.Runtime.CompilerServices;
 using PLC.EventStore.Models;
-using PLC.EventStore.Core;
+using PLC.EventStore.Core.Repository;
 using PLC.EventSource;
 
 namespace PLC.EventStore.Repository
@@ -77,8 +77,9 @@ namespace PLC.EventStore.Repository
                         var dynamicParameter = new DynamicParameters();
                         dynamicParameter.Add("@TransactionId", eventModel?.TransactionId, DbType.String, ParameterDirection.Input);
                         dynamicParameter.Add("@EventName", eventModel?.EventName, DbType.String, ParameterDirection.Input);
-                        dynamicParameter.Add("@Data", eventModel?.Data, DbType.String, ParameterDirection.Input);
-                        dynamicParameter.Add("@CreatedDate", eventModel?.CreatedDate, DbType.String, ParameterDirection.Input);
+                        dynamicParameter.Add("@OldData", eventModel?.OldData, DbType.String, ParameterDirection.Input);
+                        dynamicParameter.Add("@NewData", eventModel?.NewData, DbType.String, ParameterDirection.Input);
+                        dynamicParameter.Add("@CreatedDate", Convert.ToDateTime(eventModel?.CreatedDate), DbType.DateTime, ParameterDirection.Input);
 
                         return dynamicParameter;
                     })
@@ -87,9 +88,9 @@ namespace PLC.EventStore.Repository
                         var command =
                                 new StringBuilder()
                                 .Append("INSERT INTO dbo.EventStore ")
-                                .Append("(TransactionId,EventName,Data,CreatedDate) ")
+                                .Append("(TransactionId,EventName,OldData,NewData,CreatedDate) ")
                                 .Append("VALUES ")
-                                .Append("(@TransactionId,@EventName,@Data,@CreatedDate)")
+                                .Append("(@TransactionId,@EventName,@OldData,@NewData,@CreatedDate)")
                                 .ToString();
 
                         await
@@ -98,6 +99,7 @@ namespace PLC.EventStore.Repository
 
                         return true;
                     })
+
                     ?.ResultAsync<bool>();
             }
             catch

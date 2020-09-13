@@ -5,8 +5,6 @@
 	Password Varchar(100),
 	Salt Varchar(MAX),
 	Hash Varchar(MAX),
-	TransactionId Varchar(MAX),
-	IsCommit bit,
 	IsDelete bit,
 	CreatedDate DateTime,
 	ModifiedDate DateTime

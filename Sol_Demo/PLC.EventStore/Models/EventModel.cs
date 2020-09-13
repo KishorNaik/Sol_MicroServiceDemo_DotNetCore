@@ -10,7 +10,9 @@ namespace PLC.EventStore.Models
 
         public String EventName { get; set; }
 
-        public String Data { get; set; }
+        public String OldData { get; set; }
+
+        public String NewData { get; set; }
 
         public String CreatedDate { get; set; }
     }
