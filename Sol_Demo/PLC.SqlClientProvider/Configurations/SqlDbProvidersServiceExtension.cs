@@ -1,13 +1,12 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using PLC.AppSetting;
-using PLC.Dapper.Core;
-using PLC.Dapper.Core.DbProviders;
 using PLC.Dapper.Helpers;
+using PLC.SqlClientProvider.Clients;
+using PLC.SqlClientProvider.Cores;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace PLC.Configuration.Services
+namespace PLC.SqlClientProvider.Configurations
 {
     public static class SqlDbProvidersServiceExtension
     {

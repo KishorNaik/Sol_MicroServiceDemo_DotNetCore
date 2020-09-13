@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFramework>netcoreapp3.1</TargetFramework>
@@ -10,7 +10,5 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\PLC.Dapper\PLC.Dapper.csproj" />
-		<ProjectReference Include="..\PLC.EventSource\PLC.EventSource.csproj" />
-		<ProjectReference Include="..\PLC.SqlClientProvider\PLC.SqlClientProvider.csproj" />
 	</ItemGroup>
 </Project>

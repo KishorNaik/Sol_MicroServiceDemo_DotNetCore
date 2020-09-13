@@ -17,6 +17,7 @@ using PLC.Configuration.Configuration;
 using PLC.Configuration.Middlewares;
 using PLC.Configuration.Services;
 using PLC.EventStore.Configurations;
+using PLC.SqlClientProvider.Configurations;
 
 namespace PLC.Admin.Api
 {

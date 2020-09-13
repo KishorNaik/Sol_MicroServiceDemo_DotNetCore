@@ -1,7 +1,6 @@
 ﻿using PLC.Admin.Api.Cores.Infrastructures.Repository;
 using PLC.Admin.Api.Infrastructures.Abstracts;
 using PLC.Admin.Api.Models;
-using PLC.Dapper.Core.DbProviders;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +8,7 @@ using System.Threading.Tasks;
 using System.Data;
 using Dapper;
 using PLC.Admin.Api.Infrastructures.ResultSets;
+using PLC.SqlClientProvider.Cores;
 
 namespace PLC.Admin.Api.Infrastructures.Repository
 {

@@ -6,11 +6,11 @@ using Dapper;
 using PLC.Dapper;
 using PLC.Dapper.Helpers;
 using System.Data;
-using PLC.Dapper.Core.DbProviders;
 using System.Runtime.CompilerServices;
 using PLC.EventStore.Models;
 using PLC.EventStore.Core.Repository;
 using PLC.EventSource;
+using PLC.SqlClientProvider.Cores;
 
 namespace PLC.EventStore.Repository
 {

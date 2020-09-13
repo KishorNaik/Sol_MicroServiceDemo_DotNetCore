@@ -1,12 +1,12 @@
 ﻿using PLC.Dapper.Core;
-using PLC.Dapper.Core.DbProviders;
+using PLC.SqlClientProvider.Cores;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PLC.Dapper.Helpers
+namespace PLC.SqlClientProvider.Clients
 {
     public class SqlClientDbProviders : ISqlClientDbProviders
     {
